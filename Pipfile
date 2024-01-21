@@ -4,20 +4,20 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-sqlalchemy = "*"
 flask = "*"
-flask-wtf = "*"
-wtforms = "*"
 python-dotenv = "*"
-email-validator = "*"
+sqlalchemy = "*"
 flask-sqlalchemy = "*"
-psycopg2-binary = "*"
-alembic = "*"
-flask-migrate = "*"
+wtforms = "*"
+flask-wtf = "*"
 flask-login = "*"
-werkzeug = "*"
+werkzeug = "==2.3"
 
 [dev-packages]
+pylint = "*"
+pycodestyle = "*"
+rope = "*"
 
 [requires]
 python_version = "3.9"
+python_full_version = "3.9.6"
