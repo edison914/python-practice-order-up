@@ -50,3 +50,12 @@ class MenuItem(db.Model, UserMixin):
     price = db.Column(db.Float, nullable=False)
     menu_id = db.Column(db.Integer, db.ForeignKey('menus.id'), nullable=False)
     menu_type_id = db.Column(db.Integer, db.ForeignKey('menus_item_types.id'), nullable=False)
+
+class Table(db.Model, UserMixin):
+    __tablename__ = 'tables'
+
+    id = db.Column(db.Integer, primary_key=True)
+    number = db.Column(db.Integer, nullable=False, unique=True)
+    capacity = db.Column(db.Integer, nullable=False)
+
+    
