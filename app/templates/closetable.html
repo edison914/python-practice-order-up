@@ -1,0 +1,14 @@
+<div>
+    <form method="post" action="{{ url_for('.close_table') }}">
+        {{ form.csrf_token }}
+        <div>
+          <h1>Close a table below</h1>
+        </div>
+
+        <div>
+           <p>Close order {{ form.order_id }}</p>
+          </div>
+        <div>{{ form.submit }}</div>
+      </form>
+
+</div>

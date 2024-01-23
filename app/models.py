@@ -38,7 +38,7 @@ class Menu(db.Model, UserMixin):
     # rel menu and MenuItem
     items = db.relationship('MenuItem', back_populates='menu')
 
-    class MenuItem(db.Model, UserMixin):
+class MenuItem(db.Model, UserMixin):
         __tablename__ = 'menu_items'
 
         id = db.Column(db.Integer, primary_key=True)
@@ -88,7 +88,7 @@ class Order(db.Model, UserMixin):
     # rel order and table  one to many
     table = db.relationship('Table', back_populates='orders')
     # rel order and order detail
-    order_details = db.relationship('Order', back_populates='order')
+    order_details = db.relationship('OrderDetail', back_populates='order')
 
 class OrderDetail(db.Model, UserMixin):
     __tablename__ = 'order_details'
