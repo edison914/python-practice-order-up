@@ -4,5 +4,5 @@ from wtforms.validators import DataRequired
 
 class AddItemForm (FlaskForm):
     order_id = SelectField('Employee id', validators=[DataRequired()])
-    menu_item_ids = SelectMultipleField('Menu items', coerce=int)
+    menu_item_ids = SelectMultipleField('Menu items')
     submit = SubmitField('Confirm Adding Items')

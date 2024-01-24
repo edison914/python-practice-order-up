@@ -1,22 +1,22 @@
 <div>
-    <form method="post" action="{{ url_for('.add_items') }}">
-        {{ form.csrf_token }}
-        <div>
-          <h1>Add items to the order</h1>
-        </div>
-        <div>
-            Select Order {{ form.order_id }}
-        </div>
-        <div>
-          Select items
-          {% for id in form.menu_item_ids %}
-              <div>
-                  <input type="checkbox" name="menu_item_ids" value="{{ id }}" id="{{ id }}">
-                  <label>{{ id }}</label>
-              </div>
-          {% endfor %}
+  <form method="post" action="{{ url_for('.add_items') }}">
+      {{ form.csrf_token }}
+      <div>
+        <h1>Add items to the order</h1>
       </div>
-        <div>{{ form.submit }}</div>
-      </form>
+      <div>
+          Select Order {{ form.order_id }}
+      </div>
+      <div>
+        Select items
+        {% for id, name in form.menu_item_ids.choices %}
+            <div>
+                <input type="checkbox" name="menu_item_ids" value="{{ id }}" id="{{ id }}">
+                <label>{{ name }}</label>
+            </div>
+        {% endfor %}
+    </div>
+      <div>{{ form.submit }}</div>
+    </form>
 
 </div>

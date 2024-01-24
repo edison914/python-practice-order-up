@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required
-from ..models import Table, Employee, Order, MenuItem, db
+from ..models import Table, Employee, Order, MenuItem, OrderDetail, db
 from app.forms import AssignTableForm, CloseTableForm, AddItemForm
 
 bp = Blueprint('orders', __name__, url_prefix='')
@@ -8,7 +8,6 @@ bp = Blueprint('orders', __name__, url_prefix='')
 @bp.route('/')
 @login_required
 def index():
-
     return render_template('orders.html')
 
 
@@ -53,6 +52,7 @@ def close_table():
         order_selected = Order.query.get(order_id)
         order_selected.finished = True
 
+        db.session.add(order_selected)
         db.session.commit()
 
         return redirect (url_for('.index'))
@@ -74,11 +74,20 @@ def add_items():
 
     #show a list of menu items that can be added
     menu_items = MenuItem.query.all()
-    form.menu_item_ids = [item.id for item in menu_items]
-
-    print(form.menu_item_ids)
+    print(menu_items[0].id, menu_items[0].name)
+    # create a list of choices to be selected in html, do not use choices for mutiple select?
+    form.menu_item_ids.choices = [(item.id, item.name) for item in menu_items]
 
     if form.validate_on_submit():
+        order_selected = form.order_id.data
+        menu_items_selected = form.menu_item_ids.data
+        print(menu_items_selected)
+
+        #loop through the list of menus_items, create order_detail obj with selected item id
+        for item in menu_items_selected:
+            order_detail = OrderDetail(order_id=order_selected, menu_item_id=item)
+            db.session.add(order_detail)
+            db.session.commit()
 
         return redirect (url_for('.index'))
 

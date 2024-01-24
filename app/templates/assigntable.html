@@ -1,3 +1,5 @@
+{% block content3 %}
+
 <div>
     <form method="post" action="{{ url_for('.assign_table') }}">
         {{ form.csrf_token }}
@@ -14,3 +16,4 @@
       </form>
 
 </div>
+{% endblock %}

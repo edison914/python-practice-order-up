@@ -29,7 +29,7 @@ class Employee(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-class Menu(db.Model, UserMixin):
+class Menu(db.Model):
     __tablename__ = 'menus'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -38,7 +38,7 @@ class Menu(db.Model, UserMixin):
     # rel menu and MenuItem
     items = db.relationship('MenuItem', back_populates='menu')
 
-class MenuItem(db.Model, UserMixin):
+class MenuItem(db.Model):
         __tablename__ = 'menu_items'
 
         id = db.Column(db.Integer, primary_key=True)
@@ -55,7 +55,7 @@ class MenuItem(db.Model, UserMixin):
         # one to many
         menu = db.relationship('Menu', back_populates='items')
 
-class MenuItemType(db.Model, UserMixin):
+class MenuItemType(db.Model):
     __tablename__ = 'menus_item_types'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -65,7 +65,7 @@ class MenuItemType(db.Model, UserMixin):
 
 
 
-class Table(db.Model, UserMixin):
+class Table(db.Model):
     __tablename__ = 'tables'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -75,7 +75,7 @@ class Table(db.Model, UserMixin):
     # rel order and table
     orders = db.relationship("Order", back_populates="table")
 
-class Order(db.Model, UserMixin):
+class Order(db.Model):
     __tablename__ = 'orders'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -90,7 +90,7 @@ class Order(db.Model, UserMixin):
     # rel order and order detail
     order_details = db.relationship('OrderDetail', back_populates='order')
 
-class OrderDetail(db.Model, UserMixin):
+class OrderDetail(db.Model):
     __tablename__ = 'order_details'
 
     id = db.Column(db.Integer, primary_key=True)
