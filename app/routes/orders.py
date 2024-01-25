@@ -23,10 +23,10 @@ def assign_table():
     form.employee_id.choices = [employee.id for employee in employees]
 
     if form.validate_on_submit():
-        employee_id = form.employee_id.data
-        table_id = form.table_id.data
+        employee_id_selected = form.employee_id.data
+        table_id_selected = form.table_id.data
 
-        new_order = Order(employee_id=employee_id, table_id=table_id, finished=False)
+        new_order = Order(employee_id=employee_id_selected, table_id=table_id_selected, finished=False)
 
         db.session.add(new_order)
         db.session.commit()
@@ -75,7 +75,7 @@ def add_items():
     #show a list of menu items that can be added
     menu_items = MenuItem.query.all()
     print(menu_items[0].id, menu_items[0].name)
-    # create a list of choices to be selected in html, do not use choices for mutiple select?
+    # create a list of choices to be selected in html.
     form.menu_item_ids.choices = [(item.id, item.name) for item in menu_items]
 
     if form.validate_on_submit():
@@ -91,4 +91,4 @@ def add_items():
 
         return redirect (url_for('.index'))
 
-    return render_template('additems.html', form=form, menu_items=menu_items)
+    return render_template('additems.html', form=form)

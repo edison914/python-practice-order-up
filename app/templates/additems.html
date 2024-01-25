@@ -9,6 +9,7 @@
       </div>
       <div>
         Select items
+        <!-- loop through choices to get display all id, name pairs -->
         {% for id, name in form.menu_item_ids.choices %}
             <div>
                 <input type="checkbox" name="menu_item_ids" value="{{ id }}" id="{{ id }}">
